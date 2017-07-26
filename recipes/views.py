@@ -12,9 +12,14 @@ def recipes(request):
         'id': recipe.id,
         'url': recipe.url,
         'title': recipe.title,
+        'image_url': recipe.image_url,
         'description': recipe.description,
+        'cook_time': recipe.cook_time,
+        'difficulty': recipe.difficulty,
+        'servings': recipe.servings,
+        'tags': recipe.tags,
         'ingredients': recipe.ingredients,
-        'instructions': recipe.instructions,
+        'methods': recipe.methods,
     } for recipe in Recipe.objects.all()]}
     return JsonResponse(data)
 
@@ -26,10 +31,16 @@ def detail(request, recipe_id):
     except Recipe.DoesNotExist:
         raise Http404('Recipe does not exist')
 
-    data = {"url": recipe.url,
+    data = {'id': recipe.id,
+            "url": recipe.url,
             'title': recipe.title,
-            'short_description': recipe.short_description,
+            'image_url': recipe.image_url,
+            'description': recipe.description,
+            'cook_time': recipe.cook_time,
+            'difficulty': recipe.difficulty,
+            'servings': recipe.servings,
+            'tags': recipe.tags,
             'ingredients': recipe.ingredients,
-            'instructions': recipe.instructions,
+            'methods': recipe.methods,
             }
     return JsonResponse(data)

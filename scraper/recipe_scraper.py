@@ -15,11 +15,10 @@ print(request.status_code)
 recipe_data = {
     'title': "",
     'description': "",
-    'snapshot': {
-        'cook_time': [],
-        'difficulty': "",
-        'serves': "",
-    },
+    'image_url': "",
+    'cook_time': [],
+    'difficulty': "",
+    'servings': "",
     'tags': [],
     'ingredients': [],
     'methods': [],
@@ -31,6 +30,11 @@ soup = BeautifulSoup(request.text, "html.parser")
 # Title
 title = soup.find_all("h1", class_="recipe-header__title", limit=1)
 recipe_data['title'] = title[0].get_text()
+
+# Image URL
+image_parent = soup.find_all("div", class_="img-container")
+image_url = image_parent[0].find_all("img")[0].get("src")
+recipe_data['image_url'] = "https:{}".format(image_url)
 
 # Description
 description = soup.find_all("div", class_="recipe-header__description", limit=1)
@@ -44,16 +48,16 @@ cook_time_prep = cook_time[0].find_all("span", class_="recipe-details__cooking-t
 cook_time_cook = cook_time[0].find_all("span", class_="recipe-details__cooking-time-cook")
 
 if len(cook_time_prep) > 0 and len(cook_time_cook) > 0:
-    recipe_data['snapshot']['cook_time'].append(cook_time_prep[0].get_text())
-    recipe_data['snapshot']['cook_time'].append(cook_time_cook[0].get_text())
+    recipe_data['cook_time'].append(cook_time_prep[0].get_text())
+    recipe_data['cook_time'].append(cook_time_cook[0].get_text())
 else:
-    recipe_data['snapshot']['cook_time'].append(cook_time[0].get_text())
+    recipe_data['cook_time'].append(cook_time[0].get_text())
 
 difficulty = soup.find_all("section", class_="recipe-details__item--skill-level")
-recipe_data['snapshot']['difficulty'] = difficulty[0].get_text()
+recipe_data['difficulty'] = difficulty[0].get_text()
 
 serves = soup.find_all("section", class_="recipe-details__item--servings")
-recipe_data['snapshot']['serves'] = serves[0].get_text()
+recipe_data['serves'] = serves[0].get_text()
 
 # Tags
 tag_parent = soup.find_all("ul", class_="additional-info")

@@ -79,7 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'recipe_api',
-        'USER': 'postgres',
+        'USER': 'vox',
+        'PASSWORD': 'password',
         'PORT': 5432,
     }
 }
