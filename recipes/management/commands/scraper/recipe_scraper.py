@@ -91,5 +91,5 @@ def get_recipes(model, headers=HEADERS):
             recipe.save()
             print("{} saved".format(recipe.title))
         except django.db.utils.IntegrityError:
-            print('An error occured...')
+            print('Error. Recipe not saved...')
             pass
