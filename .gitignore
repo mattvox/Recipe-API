@@ -1,2 +1,13 @@
 .flake8
 db.sqlite3
+scraper_temp
+temp
+notes.txt
+settings_local.py
+hidden.py
+
+*.pyc
+*.pyo
+*.sock
+
+static

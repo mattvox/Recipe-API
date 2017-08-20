@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 HEADERS = {'User-agent': 'Google Chrome'}
 URL = "https://www.bbcgoodfood.com/sitemap.xml"
+RECIPE_URL_BASE = "https://www.bbcgoodfood.com/recipes"
 
 
 def get_urls(url=URL):
@@ -20,11 +21,12 @@ def get_urls(url=URL):
 
     for index, link in enumerate(soup.find_all("loc")):
         recipe = link.text
-        recipe_test = re.compile("http://www.bbcgoodfood.com/recipe")
+        recipe_test = re.compile(RECIPE_URL_BASE)
         if recipe_test.match(recipe):
             data.append(recipe)
 
-        if index >= 2500:
+        if index >= 2000:
             break
 
+        print(data)
     return data

@@ -5,5 +5,4 @@ from recipes.models import Recipe
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        # use the code!!!
         get_recipes(Recipe)

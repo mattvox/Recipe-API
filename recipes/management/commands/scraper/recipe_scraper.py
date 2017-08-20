@@ -86,14 +86,10 @@ def get_recipes(model, headers=HEADERS):
                     part.extract()
             recipe_data['methods'].append(method.get_text())
 
-        # Print Statements for Testing
-        # Data storage could happen in the DB!!
-        # Duplicatdb es?
-
         try:
             recipe = model(url=recipe_data['url'], title=recipe_data['title'], image_url=recipe_data['image_url'], description=recipe_data['description'], cook_time=recipe_data['cook_time'], difficulty=recipe_data['difficulty'], servings=recipe_data['servings'], tags=recipe_data['tags'], ingredients=recipe_data['ingredients'], methods=recipe_data['methods'])
             recipe.save()
             print("{} saved".format(recipe.title))
         except django.db.utils.IntegrityError:
-            print('some error')
+            print('An error occured...')
             pass

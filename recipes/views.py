@@ -1,13 +1,9 @@
-# import json
-
-# from django.shortcuts import render
 from django.http import Http404, JsonResponse
 
 from .models import Recipe
 
 
 def recipes(request):
-    # TODO -> how the hell do I do pagination?
     data = {"data": [{
         'id': recipe.id,
         'url': recipe.url,
@@ -25,7 +21,6 @@ def recipes(request):
 
 
 def detail(request, recipe_id):
-    # fetch that single recipe by its id
     try:
         recipe = Recipe.objects.get(id=recipe_id)
     except Recipe.DoesNotExist:
