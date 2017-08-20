@@ -4,6 +4,7 @@ scraper_temp
 temp
 notes.txt
 settings_local.py
+recipe_api/settings_local.py
 hidden.py
 
 *.pyc
