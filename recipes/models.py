@@ -7,6 +7,7 @@ class Recipe(models.Model):
     """
     Recipe model
     """
+
     def __str__(self):
         return self.title
 
